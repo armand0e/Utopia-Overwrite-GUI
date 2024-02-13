@@ -1,9 +1,10 @@
 import os
-
-os.system("pip install -r requirements.txt")
-
-import PySimpleGUI as sg
 from config import Config
+
+try:
+    import PySimpleGUI as sg
+except:
+    os.system("pip install -r requirements.txt")
 
 
 map_folder = Config.maps_folder_path
