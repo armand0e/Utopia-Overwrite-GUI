@@ -8,6 +8,8 @@ except:
 
 
 map_folder = Config.maps_folder_path
+    
+    
 layout = [
     [sg.Frame('Platform:',[[ sg.Radio('Steam', 'radio1', key='-STEAM-', size=(7,1)), sg.Radio('Epic Games', 'radio1', key='-EPIC-',  size=(13,1))]],)],
     [sg.Text('Desired Map:'), sg.Input(key="-IN-"), sg.FileBrowse(initial_folder= map_folder , file_types=( ("UDK", "*.udk"), ("UPK", "*.upk") ))],
@@ -23,17 +25,27 @@ while True:
     if event in (sg.WINDOW_CLOSED, "Cancel"):
         break
     if event == "Overwrite":        
-        desired_map = '"' + values["-IN-"] + '"'
+        map = '"' + values["-IN-"] + '"'
+        desired_map = ""
+        for i in map:
+            if i == "/":
+                i = "\\"
+            desired_map += i
         
         if values["-STEAM-"] == True:
-            utopia_path = f"{Config.steam_path}\\rocketleague\TAGame\CookedPCConsole\Labs_Utopia_P.upk"
-            os.system(f'copy "{desired_map}" "{utopia_path}"')
-            sg.popup_auto_close(title='Success!', auto_close_duration=1)
+            utopia_path = f"{Config.steam_path}\\rocketleague\\TAGame\\CookedPCConsole\\Labs_Utopia_P.upk"
+            os.system("@echo off")
+            os.system(f'echo "{desired_map}"')
+            os.system(f'echo F|xcopy /y "{desired_map}" "{utopia_path}"')
+            sg.popup_auto_close(auto_close_duration=0.2)
+
 
         elif values["-EPIC-"] == True:
-            utopia_path = f"{Config.epic_path}\\rocketleague\TAGame\CookedPCConsole\Labs_Utopia_P.upk"
-            os.system(f'copy "{desired_map}" "{utopia_path}"')
-            sg.popup_auto_close(title='Success!', auto_close_duration=1)
+            utopia_path = f"{Config.epic_path}\\rocketleague\\TAGame\\CookedPCConsole\\Labs_Utopia_P.upk"
+            os.system("@echo off")
+            os.system(f'echo "{desired_map}"')
+            os.system(f'echo F|xcopy /y "{desired_map}" "{utopia_path}"')
+            sg.popup_auto_close(auto_close_duration=0.2)
 
         else:
             sg.popup_error('No platform selected!', 'Please select a platform.')
