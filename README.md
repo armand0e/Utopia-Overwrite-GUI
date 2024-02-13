@@ -8,7 +8,7 @@ Say goodbye to UtopiaOverwrite.bat, say hello to UtopiaOverwrite.pyw!
 > IMPORTANT! Make sure to replace all backslashes with double backslashes (`C:\Users\armand0e\maps` ->  `C:\\Users\\armand0e\\maps`)
 * Run `UtopiaOverwrite.pyw`
 * Select your platform 
-* Choose your custom map from the file browser or by pasting it's path into the text box
+* Choose your desired map from the file browser or paste it's file path into the provided text box
 * Click *Overwrite* and... voila!
 _____
 ### Usage
